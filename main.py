@@ -6,11 +6,13 @@ from dotenv import load_dotenv
 from PIL import Image
 from werkzeug.utils import secure_filename
 from flask import Flask, jsonify, request
+from flask_cors import CORS
 from cacao import CacaoColorSegmentation
 
 load_dotenv()
 
 app = Flask(__name__)
+CORS(app)
 cacao = CacaoColorSegmentation("dummy_path", n_clusters=5)
 
 app.config['ALLOWED_EXTENSIONS'] = set(['png', 'jpg', 'jpeg'])
